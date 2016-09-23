@@ -15,8 +15,6 @@ namespace TeamCityBuildNumberUpdater
                 throw new ArgumentException($"Expected 2 args, got {args.Length} instead.");
 
             VersionUpdater.UpdateVersion(args[0], args[1]);
-
-            Console.WriteLine("done");
         }
 
         public class VersionUpdater
@@ -52,7 +50,7 @@ namespace TeamCityBuildNumberUpdater
 
                 var buildNumber = $"{global.Version.Replace("-*", $".{buildCounter}")}";
 
-                Console.WriteLine($"##teamcity[buildNumber {buildNumber}]");
+                Console.WriteLine($"##teamcity[buildNumber '{buildNumber}']");
 
                 foreach (var projectDir in global.Projects)
                 {
