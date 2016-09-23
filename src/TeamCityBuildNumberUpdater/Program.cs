@@ -50,7 +50,7 @@ namespace TeamCityBuildNumberUpdater
 
                 var global = JsonConvert.DeserializeObject<Global>(File.ReadAllText(globalJsonPath));
 
-                var buildNumber = $"{global.Version.TrimEnd(new char[] { '-', '*' })}.{buildCounter}";
+                var buildNumber = $"{global.Version.Replace("-*", $".{buildCounter}")}";
 
                 Console.WriteLine($"##teamcity[buildNumber {buildNumber}]");
 
