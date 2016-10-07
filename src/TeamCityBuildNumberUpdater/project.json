@@ -5,7 +5,11 @@
         "emitEntryPoint": true
     },
     "dependencies": {
-        "Newtonsoft.Json": "9.0.1"
+      "Newtonsoft.Json": "9.0.1",
+      "Microsoft.NETCore.App": {
+        "type": "platform",
+        "version": "1.0.1"
+      }
     },
     "frameworks": {
         "netcoreapp1.0": {
@@ -15,8 +19,8 @@
                 }
             }
         }
-    },
-    "runtimes": {
-        "ubuntu.14.04-x64": {}
     }
+    //"runtimes": {
+    //    "ubuntu.14.04-x64": {}
+    //}
 }

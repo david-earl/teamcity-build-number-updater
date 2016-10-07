@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Newtonsoft.Json;
 
@@ -50,16 +52,15 @@ namespace TeamCityBuildNumberUpdater
 
                 var buildNumber = $"{global.Version.Replace("-*", $".{buildCounter}")}";
 
-                Console.WriteLine($"##teamcity[buildNumber '{buildNumber}']");
+                // assume all projects are one dir below global.json 
+                var directories = Directory.GetDirectories(baseDir);
 
-                foreach (var projectDir in global.Projects)
+                foreach (var projectDir in directories)
                 {
                     var projectJsonPath = Path.Combine(new string[] { baseDir, projectDir, "project.json" });
 
                     if (!File.Exists(projectJsonPath))
                     {
-                        Console.WriteLine($"Can't find project.json in {projectDir}, continuing...");
-
                         continue;
                     }
 
