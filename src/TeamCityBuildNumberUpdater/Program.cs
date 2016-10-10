@@ -52,6 +52,8 @@ namespace TeamCityBuildNumberUpdater
 
                 var buildNumber = $"{global.Version.Replace("-*", $".{buildCounter}")}";
 
+                Console.WriteLine($"##teamcity[buildNumber '{buildNumber}']");
+
                 // assume all projects are one dir below global.json 
                 var directories = Directory.GetDirectories(baseDir);
 
